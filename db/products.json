@@ -10,5 +10,15 @@
     "name": "laptop",
     "price": 3000,
     "discount": 0
+  },
+  {
+    "id": 3,
+    "discount": 0
+  },
+  {
+    "id": 4,
+    "name": "p1",
+    "price": "50",
+    "discount": 0
   }
 ]
