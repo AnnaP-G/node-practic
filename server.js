@@ -3,6 +3,11 @@ import cors from "cors";
 import pino from "pino-http";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { notFoundHandler } from "./middlewares/notFoundHandler.js";
+import mongoose from "mongoose";
+import "dotenv/config";
+// import {PORT} from ''
+
+const { PORT, DB_HOST } = process.env;
 
 export const setupServer = () => {
   const app = express();
@@ -22,5 +27,14 @@ export const setupServer = () => {
   return app;
 };
 
-const port = 3000;
-setupServer().listen(port, () => console.log(`server started on port ${port}`));
+mongoose
+  .connect(DB_HOST)
+  .then(() => {
+    setupServer().listen(PORT, () =>
+      console.log(`server started on port ${PORT}`)
+    );
+  })
+  .catch(() => {
+    console.log("DB connection failed");
+    process.exit(1);
+  });
