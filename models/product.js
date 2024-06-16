@@ -13,7 +13,11 @@ const productSchema = new Schema({
     type: Number,
     required: false,
     default: 0,
-  }
-}) 
+  },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'users',
+  },
+});
 
 export const Product = model('products', productSchema);
