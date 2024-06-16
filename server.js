@@ -6,6 +6,7 @@ import { notFoundHandler } from "./middlewares/notFoundHandler.js";
 import mongoose from "mongoose";
 import "dotenv/config";
 import { productsRouter } from "./routers/productsRouter.js";
+import { authRouter } from "./routers/auth.js";
 // import {PORT} from ''
 
 const { PORT, DB_HOST } = process.env;
@@ -21,7 +22,8 @@ export const setupServer = () => {
       },
     })
   );
-  app.use("/api/products", productsRouter)
+  app.use("/api/auth", authRouter);
+  app.use("/api/products", productsRouter);
   app.use(notFoundHandler);
   app.use(errorHandler);
 
