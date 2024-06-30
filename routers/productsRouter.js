@@ -5,8 +5,17 @@ import { authenticateAccessToken } from '../middlewares/authenticateAccessToken.
 
 export const productsRouter = Router();
 
-productsRouter.post('/', authenticateAccessToken ,c.addProduct); // body={name: "", price: ""}
-productsRouter.get('/', authenticateAccessToken, c.getProducts);
+productsRouter.post('/', authenticateAccessToken, c.addProduct); // body={name: "", price: ""}
+productsRouter.get(
+	'/',
+	// authenticateAccessToken,
+	c.getProducts
+);
+productsRouter.patch(
+	'/:productId',
+	// authenticateAccessToken,
+	c.updateProduct
+);
 
 // const addProductFromFront = (productData, token) => {
 //   const p = axios.post('http://localhost:3000/api/product', productData, {
