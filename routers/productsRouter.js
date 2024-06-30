@@ -2,6 +2,7 @@ import { Router } from 'express';
 // import { addProduct, getProducts } from "../controllers/productsControllers.js";
 import * as c from '../controllers/productsControllers.js';
 import { authenticateAccessToken } from '../middlewares/authenticateAccessToken.js';
+import { upload } from '../middlewares/upload.js';
 
 export const productsRouter = Router();
 
@@ -13,6 +14,7 @@ productsRouter.get(
 );
 productsRouter.patch(
 	'/:productId',
+	upload.array('productImages', 6),
 	// authenticateAccessToken,
 	c.updateProduct
 );
@@ -24,3 +26,4 @@ productsRouter.patch(
 //     },
 //   });
 // };
+
